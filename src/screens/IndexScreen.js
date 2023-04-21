@@ -14,6 +14,8 @@ export const IndexScreen = (props) => {
     const [data, setData] = useState([]);
 
     var datos = [];
+
+
     useEffect(() => {
         const auth = getAuth();
         onAuthStateChanged(auth, (user) => {

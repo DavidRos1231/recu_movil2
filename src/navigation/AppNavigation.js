@@ -5,6 +5,7 @@ import IndexStack from "./IndexStack";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 import {ProfileStack} from "./ProfileStack";
 import {MapStack} from "./MapStack";
+import {PlacesStack} from "./PlacesStack";
 
 
 const Tab = createBottomTabNavigator();
@@ -31,6 +32,7 @@ export default function AppNavigation() {
                 <Tab.Screen name="index" component={IndexStack} options={{title: "Contactos"}}/>
                 <Tab.Screen name="profile" component={ProfileStack} options={{title: "Perfil"}}/>
                 <Tab.Screen name="map" component={MapStack} options={{title: "Mapa"}}/>
+                <Tab.Screen name="places" component={PlacesStack} options={{title: "Lugares favoritos"}}/>
             </Tab.Navigator>
         </>
 
