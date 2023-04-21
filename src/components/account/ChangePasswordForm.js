@@ -13,7 +13,11 @@ import {
 
 export const ChangePasswordForm = ({ close }) => {
 	const [password, setPassword] = useState(false);
+	const [newPassword, setNewPassword] = useState(false);
+	const [repeatNewPassword, setRepeatNewPassword] = useState(false);
 	const showPass = () => setPassword(!password);
+	const showNewPass = () => setNewPassword(!newPassword);
+	const showRepeatNewPass = () => setRepeatNewPassword(!repeatNewPassword);
 
 	const formik = useFormik({
 		initialValues: {
@@ -73,12 +77,12 @@ export const ChangePasswordForm = ({ close }) => {
 			<Input
 				placeholder='Nueva contraseña'
 				containerStyle={styles.input}
-				secureTextEntry={password ? false : true}
+				secureTextEntry={newPassword ? false : true}
 				rightIcon={{
 					type: 'material-community',
-					name: password ? 'eye-off-outline' : 'eye-outline',
+					name: newPassword ? 'eye-off-outline' : 'eye-outline',
 					color: '#c2c2c2',
-					onPress: showPass,
+					onPress: showNewPass,
 				}}
 				onChangeText={(text) =>
 					formik.setFieldValue('newPassword', text)
@@ -89,12 +93,12 @@ export const ChangePasswordForm = ({ close }) => {
 			<Input
 				placeholder='Confirmar nueva contraseña'
 				containerStyle={styles.input}
-				secureTextEntry={password ? false : true}
+				secureTextEntry={repeatNewPassword ? false : true}
 				rightIcon={{
 					type: 'material-community',
-					name: password ? 'eye-off-outline' : 'eye-outline',
+					name: repeatNewPassword ? 'eye-off-outline' : 'eye-outline',
 					color: '#c2c2c2',
-					onPress: showPass,
+					onPress: showRepeatNewPass,
 				}}
 				onChangeText={(text) =>
 					formik.setFieldValue('repeatNewPassword', text)
