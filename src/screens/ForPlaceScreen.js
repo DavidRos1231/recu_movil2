@@ -93,6 +93,7 @@ export const ForPlaceScreen = (props) => {
 
                 if (snapshot.exists()) {
                     await set(ref(db, 'lugares/' + correo + '/' + item.id), {
+                        id: item.id,
                         nombre: nombre,
                         latitud: latitud,
                         longitud: longitud,
@@ -152,8 +153,8 @@ console.log('numId ', numId);
                 Toast.show({
                     type: 'success',
                     position: 'bottom',
-                    text1: 'Contacto registrado',
-                    text2: 'Se ha registrado el contacto correctamente',
+                    text1: 'CLugar registrado',
+                    text2: 'Se ha registrado el lugar correctamente',
                 });
             } catch (error) {
                 Toast.show({

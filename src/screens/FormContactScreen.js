@@ -10,7 +10,7 @@ import { getAuth } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 
 export const FormContactScreen = (props) => {
-	const { item } = props.route.params;
+	const {item} = props.route.params;
 
 	console.log('item ', item);
 	const navigation = useNavigation();
@@ -27,7 +27,55 @@ export const FormContactScreen = (props) => {
 	const [longitud, setLongitud] = useState(item ? item.longitud : '');
 
 	const writeUserData = async (nombre, telefono, latitud, longitud) => {
+
 		try {
+			let correo = getAuth().currentUser.email;
+			correo = correo.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+
+			if (item) {
+				const db = getDatabase();
+				const snapshot = await get(child(dbRef, `contactos/` + correo + '/' + item.id));
+
+				if (snapshot.exists()) {
+					await set(ref(db, 'contactos/' + correo + '/' + item.id), {
+						id: item.id,
+						nombre: nombre,
+						telefono: telefono,
+						latitud: latitud,
+						longitud: longitud,
+					});
+				} else {
+					console.error('El elemento no existe en la base de datos.');
+				}
+
+				navigation.navigate('indexS');
+			} else {
+				const db = getDatabase();
+				const numIdRef = ref(db, 'numId/' + correo); // Referencia al contador de id
+
+				// Obtener el valor actual del contador de id
+				const numIdSnapshot = await get(numIdRef);
+				let numId = 1; // Valor predeterminado si no existe el contador de id
+
+				if (numIdSnapshot.exists()) {
+					numId = numIdSnapshot.val();
+				}
+
+				await set(ref(db, 'contactos/' + correo + '/' + numId), {
+					id: numId,
+					nombre: nombre,
+					telefono: telefono,
+					latitud: latitud,
+					longitud: longitud,
+				});
+
+				// Incrementar el contador de id en 1
+				await set(numIdRef, numId + 1);
+
+				navigation.navigate('indexS');
+			}
+
+		/*try {
 			let correo = getAuth().currentUser.email;
 			correo = correo.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
 
@@ -84,7 +132,7 @@ export const FormContactScreen = (props) => {
 					.catch((error) => {
 						console.error(error);
 					});
-			}
+			}*/
 
 			Toast.show({
 				type: 'success',
