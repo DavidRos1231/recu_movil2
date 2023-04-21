@@ -57,6 +57,11 @@ function showIcons(route, color, size) {
         icon = "account-circle"
     }
 
+    if (route.name === "places") {
+        icon = "map-marker-radius"
+
+    }
+
     if (route.name === "map") {
         icon = "map"
 

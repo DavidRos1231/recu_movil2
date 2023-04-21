@@ -6,9 +6,7 @@ import * as Yup from 'yup';
 import MapView, { Marker } from 'react-native-maps';
 import Toast from 'react-native-toast-message';
 import { getDatabase, ref, set, onValue, get, child } from 'firebase/database';
-import { writeUserData } from './functions/newContact';
 import { getAuth } from 'firebase/auth';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from '@react-navigation/native';
 
 export const FormContactScreen = (props) => {
