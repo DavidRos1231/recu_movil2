@@ -11,7 +11,7 @@ import { getAuth } from 'firebase/auth';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 
-export const FormContactScreen = ({}) => {
+export const FormContactScreen = ({route}) => {
     const dbRef = ref(getDatabase());
     const [origin, setOrigin] = React.useState(
         {
@@ -20,10 +20,13 @@ export const FormContactScreen = ({}) => {
         }
     );
 
-    const [nombre, setNombre] = useState('');
-    const [telefono, setTelefono] = useState('');
-    const [latitud, setLatitud] = useState('');
-    const [longitud, setLongitud] = useState('');
+    const {item} = route.params;
+
+
+    const [nombre, setNombre] = useState(item ? item.nombre:'');
+    const [telefono, setTelefono] = useState(item ? item.telefono:'');
+    const [latitud, setLatitud] = useState(item ? item.latitud:1);
+    const [longitud, setLongitud] = useState(item ? item.longitud: '');
 
     async function writeUserData(nombre, telefono, latitud, longitud) {
         try {
@@ -110,7 +113,7 @@ export const FormContactScreen = ({}) => {
                 <Input
                     placeholder='Nombre'
                     containerStyle={styles.input}
-                    onChangeText={(text) => formik.setFieldValue('nombre', text)}
+                    onChangeText={(nombre) => setNombre(nombre)}
                     errorMessage={formik.errors.nombre}
                 />
                 <Input
