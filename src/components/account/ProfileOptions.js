@@ -26,12 +26,12 @@ export const ProfileOptions = ({ onReload }) => {
 			setConteined(<ChangePasswordForm close={onClose} />);
 		}
 
-		if (key === 'email') {
+		/*if (key === 'email') {
 			setConteined(
 				<ChangeEmailForm close={onClose} onReload={onReload} />
 			);
 		}
-
+*/
 		onClose();
 	};
 
@@ -81,14 +81,14 @@ const getOptionsMenu = (selectComponent) => {
 			nameIconRight: 'chevron-right',
 			onPress: () => selectComponent('password'),
 		},
-		{
+		/*{
 			title: 'Cambiar email',
 			typeIcon: 'material-community',
 			nameIconLeft: 'at',
 			colorIcon: '#ccc',
 			nameIconRight: 'chevron-right',
 			onPress: () => selectComponent('email'),
-		},
+		},*/
 	];
 };
 
