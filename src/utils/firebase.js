@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import "firebase/auth"; // Importa el módulo de autenticación de Firebase
 import "firebase/database"; // Importa el módulo de base de datos en tiempo real de Firebase
 import "firebase/storage";
+import {getDatabase} from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -19,3 +20,4 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
+export const db = getDatabase(app);

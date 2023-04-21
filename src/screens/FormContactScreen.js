@@ -32,7 +32,7 @@ export const FormContactScreen = ({}) => {
             correo = correo.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
 
             let numId = 1;
-            get(child(dbRef, `contactos/`)).then((snapshot) => {
+            get(child(dbRef, `contactos/`+correo)).then((snapshot) => {
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     // Obtener el número de elementos en el objeto
